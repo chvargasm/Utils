@@ -1,0 +1,24 @@
+ /**
+     * 
+     * utility that allows you to clone a list, occupying the
+     * Cloneable interface sent by the object parameter
+     * 
+     * @author cvargasm
+     * @param list
+     * @return
+     * @since 1.0
+     */
+    
+    public static <T> List<T> cloneList( final List<T> list ) {
+        final ArrayList<T> result = new ArrayList<T>( list.size() );
+        for ( final T entry : list ) {
+            try {
+                result.add( org.apache.http.client.utils.CloneUtils
+                        .cloneObject( entry ) );
+            }
+            catch ( CloneNotSupportedException e ) {
+                logger.error( "CloneNotSupportedException ", e );
+            }
+        }
+        return result;
+    }
